@@ -25,7 +25,7 @@ jobs:
 
       - name: pnpm install & lint
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm lint
 
   test:
@@ -47,7 +47,7 @@ jobs:
 
       - name: pnpm install & test
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm test
 
   test-cli:
@@ -69,7 +69,7 @@ jobs:
 
       - name: pnpm install & test
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm test:cli
 
   test-build:
@@ -91,5 +91,5 @@ jobs:
 
       - name: pnpm install & build
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm build
