@@ -11,15 +11,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
+        with:
+          cache: true
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20.x'
-          cache: 'pnpm'
+          node-version: 22
+
       - name: pnpm install & lint
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm lint
 
   test:
@@ -31,15 +33,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
+        with:
+          cache: true
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20.x'
-          cache: 'pnpm'
+          node-version: 22
+
       - name: pnpm install & test
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm test
 
   test-cli:
@@ -51,15 +55,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
+        with:
+          cache: true
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20.x'
-          cache: 'pnpm'
+          node-version: 22
+
       - name: pnpm install & test
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm test:cli
 
   test-build:
@@ -71,14 +77,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
+        with:
+          cache: true
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20.x'
-          cache: 'pnpm'
+          node-version: 22
 
       - name: pnpm install & build
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
           pnpm build
