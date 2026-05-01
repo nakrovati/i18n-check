@@ -22,8 +22,11 @@ jobs:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies and build
-        run: pnpm ci && pnpm run build
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Build
+        run: pnpm run build
 
       - name: Publish package to NPM
         run: npm publish --access public

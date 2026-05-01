@@ -19,10 +19,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: pnpm install & lint
-        run: |
-          pnpm ci
-          pnpm lint
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Lint (pnpm lint)
+        run: pnpm lint
 
   test:
     strategy:
@@ -41,10 +42,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: pnpm install & test
-        run: |
-          pnpm ci
-          pnpm test
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Test (pnpm test)
+        run: pnpm test
 
   test-cli:
     strategy:
@@ -63,10 +65,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: pnpm install & test
-        run: |
-          pnpm ci
-          pnpm test:cli
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Test CLI (pnpm test:cli)
+        run: pnpm test:cli
 
   test-build:
     strategy:
@@ -85,7 +88,8 @@ jobs:
         with:
           node-version: 22
 
-      - name: pnpm install & build
-        run: |
-          pnpm ci
-          pnpm build
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Build (pnpm build)
+        run: pnpm build
