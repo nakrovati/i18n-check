@@ -23,10 +23,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & lint
-        run: |
-          pnpm ci
-          pnpm lint
+      - name: Install dependencies
+        run: pn ci
+
+      - name: Lint (pnpm lint)
+        run: pn lint
 
   test:
     strategy:
@@ -45,10 +46,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & test
-        run: |
-          pnpm ci
-          pnpm test
+      - name: Install dependencies
+        run: pn ci
+
+      - name: Test (pnpm test)
+        run: pn test
 
   test-cli:
     strategy:
@@ -67,10 +69,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & test
-        run: |
-          pnpm ci
-          pnpm test:cli
+      - name: Install dependencies
+        run: pn ci
+
+      - name: Test CLI (pnpm test:cli)
+        run: pn test:cli
 
   test-build:
     strategy:
@@ -89,7 +92,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & build
-        run: |
-          pnpm ci
-          pnpm build
+      - name: Install dependencies
+        run: pn ci
+
+      - name: Build (pnpm build)
+        run: pn build
