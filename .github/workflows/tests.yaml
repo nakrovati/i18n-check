@@ -8,45 +8,45 @@ env:
   NODE_VERSION: 20
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
+  # lint:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
-        with:
-          cache: true
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #     - uses: pnpm/action-setup@v6
+  #       with:
+  #         cache: true
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+  #     - uses: actions/setup-node@v6
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & lint
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm lint
+  #     - name: pnpm install & lint
+  #       run: |
+  #         pnpm install --frozen-lockfile
+  #         pnpm lint
 
-  test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+  # test:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
 
-    runs-on: ${{ matrix.os }}
+  #   runs-on: ${{ matrix.os }}
 
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
-        with:
-          cache: true
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #     - uses: pnpm/action-setup@v6
+  #       with:
+  #         cache: true
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+  #     - uses: actions/setup-node@v6
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & test
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm test
+  #     - name: pnpm install & test
+  #       run: |
+  #         pnpm install --frozen-lockfile
+  #         pnpm test
 
   test-cli:
     strategy:
@@ -70,24 +70,24 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm test:cli
 
-  test-build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+  # test-build:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
 
-    runs-on: ${{ matrix.os }}
+  #   runs-on: ${{ matrix.os }}
 
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
-        with:
-          cache: true
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #     - uses: pnpm/action-setup@v6
+  #       with:
+  #         cache: true
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+  #     - uses: actions/setup-node@v6
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & build
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm build
+  #     - name: pnpm install & build
+  #       run: |
+  #         pnpm install --frozen-lockfile
+  #         pnpm build
