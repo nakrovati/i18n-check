@@ -8,19 +8,19 @@ function tr(file: string) {
 }
 
 function multiFiles(file: string) {
-  return path.join('translations/multipleFilesFolderExample', file);
+  return path.join('translations','multipleFilesFolderExample', file);
 }
 
 function multiFolders(file: string) {
-  return path.join('translations/multipleFoldersExample', file);
+  return path.join('translations','multipleFoldersExample', file);
 }
 
 function codeEx(file: string) {
-  return path.join('translations/codeExamples', file);
+  return path.join('translations','codeExamples', file);
 }
 
 function ymlMultiFolders(file: string) {
-  return path.join('translations/yaml/multipleFoldersExample', file);
+  return path.join('translations','yaml','multipleFoldersExample', file);
 }
 
 function execAsync(cmd: string) {
