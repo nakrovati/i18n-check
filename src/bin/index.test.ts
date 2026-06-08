@@ -43,13 +43,14 @@ function execAsyncWithExitCode(cmd: string) {
 describe('CLI', () => {
   describe('JSON', () => {
     it('should return the missing keys for single folder translations', async () => {
+      console.log("SOMEOME")
       const stdout = await execAsync(
-        'node dist/bin/index.js -s en-US -l translations/flattenExamples'
+        'node dist/bin/index.js -s en-US -l translations/flattenExamples/*'
       );
-      console.log(stdout)
+      console.log("STDOUT:",stdout)
 
       const result = stdout.split('Done')[0];
-      console.log(result)
+      console.log("Result:",result)
 
       const filePath = tr('flattenExamples/de-de.json');
       const table = formatTable([

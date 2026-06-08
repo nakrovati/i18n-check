@@ -154,9 +154,9 @@ const main = async () => {
     ? `{${localePath.join(',').trim()}}/**/*.{json,yaml,yml}`
     : `${localePath.join(',').trim()}/**/*.{json,yaml,yml}`;
 
-  // const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
+  const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
 
-  const files = await glob(pattern, {
+  const files = await glob(normalizedPattern, {
     ignore: ['node_modules/**'].concat(excludedPaths)
   });
 
