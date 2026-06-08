@@ -4,7 +4,8 @@ import fs from 'node:fs';
 import { exit } from 'node:process';
 import chalk from 'chalk';
 import { program } from 'commander';
-import { glob, globSync } from 'glob';
+import { glob } from 'glob';
+import {globSync} from "tinyglobby"
 import { parse } from 'yaml';
 import {
   checkTranslations,
@@ -157,7 +158,7 @@ const main = async () => {
 
   const files = await glob(pattern, {
     ignore: ['node_modules/**'].concat(excludedPaths),
-    allowWindowsEscape: false,
+    windowsPathsNoEscape: false,
   });
 
   console.log('i18n translations checker');
@@ -295,7 +296,6 @@ const main = async () => {
       
       const filesToParse = globSync(pattern, {
         ignore: ['node_modules/**'],
-        allowWindowsEscape: false,
       });
 
       const unusedKeys = await checkUnusedKeys(
