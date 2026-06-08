@@ -153,7 +153,9 @@ const main = async () => {
     ? `{${localePath.join(',').trim()}}/**/*.{json,yaml,yml}`
     : `${localePath.join(',').trim()}/**/*.{json,yaml,yml}`;
 
-  const files = await glob(pattern, {
+  const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
+
+  const files = await glob(normalizedPattern, {
     ignore: ['node_modules/**'].concat(excludedPaths),
   });
 
@@ -287,7 +289,10 @@ const main = async () => {
       const pattern = isMultiUnusedFolders
         ? `{${unusedSrcPath.join(',').trim()}}/**/*.{js,jsx,ts,tsx}`
         : `${unusedSrcPath.join(',').trim()}/**/*.{js,jsx,ts,tsx}`;
-      const filesToParse = globSync(pattern, {
+
+      const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
+      
+      const filesToParse = globSync(normalizedPattern, {
         ignore: ['node_modules/**'],
       });
 
