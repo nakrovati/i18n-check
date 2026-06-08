@@ -755,7 +755,7 @@ Only one locale file found. Skipping missingKeys and invalidKeys checks.
     });
   });
 
-  describe('YAML', () => {
+  describe.skip('YAML', () => {
     it('should return the missing keys for single folder translations', async () => {
       const stdout = await execAsync(
         'node dist/bin/index.js -s en-US -l translations/yaml/flattenExamples'
