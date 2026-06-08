@@ -22,8 +22,11 @@ jobs:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies and build
-        run: pnpm install --frozen-lockfile && pnpm run build
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
 
       - name: Publish package to NPM
         run: npm publish --access public
