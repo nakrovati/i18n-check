@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import { exit } from 'node:process';
 import chalk from 'chalk';
 import { program } from 'commander';
-import { glob, globSync } from 'tinyglobby';
+import { glob, globSync } from 'glob';
 import { parse } from 'yaml';
 import {
   checkTranslations,
@@ -153,10 +153,11 @@ const main = async () => {
     ? `{${localePath.join(',').trim()}}/**/*.{json,yaml,yml}`
     : `${localePath.join(',').trim()}/**/*.{json,yaml,yml}`;
 
-  const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
+  // const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
 
-  const files = await glob(normalizedPattern, {
+  const files = await glob(pattern, {
     ignore: ['node_modules/**'].concat(excludedPaths),
+    allowWindowsEscape: false,
   });
 
   console.log('i18n translations checker');
@@ -290,10 +291,11 @@ const main = async () => {
         ? `{${unusedSrcPath.join(',').trim()}}/**/*.{js,jsx,ts,tsx}`
         : `${unusedSrcPath.join(',').trim()}/**/*.{js,jsx,ts,tsx}`;
 
-      const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
+      // const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
       
-      const filesToParse = globSync(normalizedPattern, {
+      const filesToParse = globSync(pattern, {
         ignore: ['node_modules/**'],
+        allowWindowsEscape: false,
       });
 
       const unusedKeys = await checkUnusedKeys(
