@@ -46,8 +46,10 @@ describe('CLI', () => {
       const stdout = await execAsync(
         'node dist/bin/index.js -s en-US -l translations/flattenExamples'
       );
+      console.log(stdout)
 
       const result = stdout.split('Done')[0];
+      console.log(result)
 
       const filePath = tr('flattenExamples/de-de.json');
       const table = formatTable([

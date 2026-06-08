@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import { exit } from 'node:process';
 import chalk from 'chalk';
 import { program } from 'commander';
-import { glob } from 'glob';
-import {globSync} from "tinyglobby"
+// import { glob } from 'glob';
+import { glob, globSync } from "tinyglobby"
 import { parse } from 'yaml';
 import {
   checkTranslations,
@@ -157,8 +157,7 @@ const main = async () => {
   // const normalizedPattern = pattern.replaceAll(/\\/g, '/'); // Normalize Windows backslashes to forward slashes for glob
 
   const files = await glob(pattern, {
-    ignore: ['node_modules/**'].concat(excludedPaths),
-    windowsPathsNoEscape: false,
+    ignore: ['node_modules/**'].concat(excludedPaths)
   });
 
   console.log('i18n translations checker');
