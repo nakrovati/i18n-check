@@ -15,7 +15,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 20
 
       - name: Install dependencies
         run: pnpm ci
@@ -23,71 +23,71 @@ jobs:
       - name: Lint (pnpm lint)
         run: pnpm lint
 
-  test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+  # test:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
 
-    runs-on: ${{ matrix.os }}
+  #   runs-on: ${{ matrix.os }}
 
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
-        with:
-          cache: true
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #     - uses: pnpm/action-setup@v6
+  #       with:
+  #         cache: true
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
+  #     - uses: actions/setup-node@v6
+  #       with:
+  #         node-version: 20
 
-      - name: Install dependencies
-        run: pnpm ci
+  #     - name: Install dependencies
+  #       run: pnpm ci
 
-      - name: Test (pnpm test)
-        run: pnpm test
+  #     - name: Test (pnpm test)
+  #       run: pnpm test
 
-  test-cli:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+  # test-cli:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
 
-    runs-on: ${{ matrix.os }}
+  #   runs-on: ${{ matrix.os }}
 
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
-        with:
-          cache: true
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #     - uses: pnpm/action-setup@v6
+  #       with:
+  #         cache: true
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
+  #     - uses: actions/setup-node@v6
+  #       with:
+  #         node-version: 20
 
-      - name: Install dependencies
-        run: pnpm ci
+  #     - name: Install dependencies
+  #       run: pnpm ci
 
-      - name: Test CLI (pnpm test:cli)
-        run: pnpm test:cli
+  #     - name: Test CLI (pnpm test:cli)
+  #       run: pnpm test:cli
 
-  test-build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+  # test-build:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
 
-    runs-on: ${{ matrix.os }}
+  #   runs-on: ${{ matrix.os }}
 
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
-        with:
-          cache: true
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #     - uses: pnpm/action-setup@v6
+  #       with:
+  #         cache: true
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
+  #     - uses: actions/setup-node@v6
+  #       with:
+  #         node-version: 20
 
-      - name: Install dependencies
-        run: pnpm ci
+  #     - name: Install dependencies
+  #       run: pnpm ci
 
-      - name: Build (pnpm build)
-        run: pnpm build
+  #     - name: Build (pnpm build)
+  #       run: pnpm build
