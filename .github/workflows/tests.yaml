@@ -65,10 +65,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & test
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm test:cli
+      - name: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm test:cli
+        run: pnpm test:cli
 
   # test-build:
   #   strategy:
