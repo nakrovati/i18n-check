@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import { exit } from 'node:process';
 import chalk from 'chalk';
 import { program } from 'commander';
-import { glob, globSync } from 'glob';
+import { glob, globSync } from 'tinyglobby';
 import { parse } from 'yaml';
 import {
   checkTranslations,
@@ -144,19 +144,17 @@ const main = async () => {
   const excludedPaths = exclude ?? [];
   const localePathFolders: string[] = localePath;
 
-  const isMultiFolders = localePathFolders.length > 1;
-
   const srcFiles: TranslationFile[] = [];
   const targetFiles: TranslationFile[] = [];
 
-  const pattern = isMultiFolders
-    ? `{${localePath.join(',').trim()}}/**/*.{json,yaml,yml}`
-    : `${localePath.join(',').trim()}/**/*.{json,yaml,yml}`;
-
-  const files = await glob(pattern, {
-    ignore: ['node_modules/**'].concat(excludedPaths),
-    windowsPathsNoEscape: true,
-  });
+  const patterns = localePathFolders.map(
+    (p) => `${p.split(path.sep).join(path.posix.sep)}/**/*.{json,yaml,yml}`
+  );
+  const files = (
+    await glob(patterns, {
+      ignore: ['node_modules/**'].concat(excludedPaths),
+    })
+  ).map(path.normalize);
 
   console.log('i18n translations checker');
   console.log(chalk.gray(`Source: ${srcPath}`));
@@ -284,14 +282,12 @@ const main = async () => {
     printTranslationResult(result);
 
     if (unusedSrcPath) {
-      const isMultiUnusedFolders = unusedSrcPath.length > 1;
-      const pattern = isMultiUnusedFolders
-        ? `{${unusedSrcPath.join(',').trim()}}/**/*.{js,jsx,ts,tsx}`
-        : `${unusedSrcPath.join(',').trim()}/**/*.{js,jsx,ts,tsx}`;
-      const filesToParse = globSync(pattern, {
+      const patterns = unusedSrcPath.map(
+        (p: string) => `${p.split(path.sep).join(path.posix.sep)}/**/*.{js,jsx,ts,tsx}`
+      );
+      const filesToParse = globSync(patterns, {
         ignore: ['node_modules/**'],
-        windowsPathsNoEscape: true,
-      });
+      }).map(path.normalize);
 
       const unusedKeys = await checkUnusedKeys(
         srcFiles,

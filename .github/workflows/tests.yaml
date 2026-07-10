@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
         with:
           cache: true
@@ -23,10 +23,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & lint
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm lint
+      - name: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm lint
+        run: pnpm lint
 
   test:
     strategy:
@@ -36,7 +37,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
         with:
           cache: true
@@ -45,10 +46,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & test
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm test
+      - name: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm test
+        run: pnpm test
 
   test-cli:
     strategy:
@@ -58,7 +60,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
         with:
           cache: true
@@ -67,10 +69,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & test
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm test:cli
+      - name: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm test:cli
+        run: pnpm test:cli
 
   test-build:
     strategy:
@@ -80,7 +83,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
         with:
           cache: true
@@ -89,7 +92,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: pnpm install & build
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm build
+      - name: pnpm install
+        run: pnpm install --frozen-lockfile
+      
+      - name: pnpm build
+        run: pnpm build
